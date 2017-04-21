@@ -2,7 +2,7 @@
 class rsa_securid_auth_agent_for_pam {
   file { '/var/ace':
     ensure => directory,
-    mode => '0700',
+    mode   => '0700',
   }
   file { '/var/ace/sdconf.rec':
     mode   => '0600',
@@ -13,7 +13,7 @@ class rsa_securid_auth_agent_for_pam {
     mode    => '0600',
   }
   file { '/opt/PAM-Agent_v7.1.0.1.16.05_06_13_02_04_01.tar':
-    source => 'puppet:///modules/${module_name}/PAM-Agent_v7.1.0.1.16.05_06_13_02_04_01.tar',
+    source => "puppet:///modules/${module_name}/PAM-Agent_v7.1.0.1.16.05_06_13_02_04_01.tar",
   }
   exec { '/usr/bin/tar -x -C /opt -f /opt/PAM-Agent_v7.1.0.1.16.05_06_13_02_04_01.tar':
     creates => '/opt/PAM-Agent_v7.1.0.1.16.05_06_13_02_04_01',
