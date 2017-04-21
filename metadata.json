@@ -1,6 +1,6 @@
 {
   "name": "evanstucker-rsa_securid_auth_agent_for_pam",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "evanstucker",
   "summary": "This module configures the RSA SecurID Authentication Agent for PAM.",
   "license": "Apache-2.0",
@@ -8,8 +8,13 @@
   "project_page": "https://github.com/evanstucker-hates-2fa/evanstucker-rsa_securid_auth_agent_for_pam",
   "issues_url": "https://github.com/evanstucker-hates-2fa/evanstucker-rsa_securid_auth_agent_for_pam/issues",
   "dependencies": [
-    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+    {"name":"puppetlabs/stdlib","version_requirement":">= 4.6.0 < 5.0.0"}
   ],
-  "data_provider": null
+  "data_provider": null,
+  "operatingsystem_support": [
+    {
+      "operatingsystem":"RedHat",
+      "operatingsystemrelease":[ "7.0" ]
+    }
+  ]
 }
-

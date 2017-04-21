@@ -9,7 +9,7 @@ class rsa_securid_auth_agent_for_pam {
     source => "puppet:///modules/${module_name}/sdconf.rec",
   }
   file { '/var/ace/sdopts.rec':
-    content => "CLIENT_IP=${facts[networking][ip]}\n",
+    content => "CLIENT_IP=${::facts[networking][ip]}\n",
     mode    => '0600',
   }
   file { '/opt/PAM-Agent_v7.1.0.1.16.05_06_13_02_04_01.tar':
