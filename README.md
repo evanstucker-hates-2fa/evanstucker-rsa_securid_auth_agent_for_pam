@@ -3,9 +3,6 @@
 #### Table of Contents
 
 1. [Description](#description)
-1. [Setup - The basics of getting started with rsa_securid_auth_agent_for_pam](#setup)
-    * [Setup requirements](#setup-requirements)
-    * [Beginning with rsa_securid_auth_agent_for_pam](#beginning-with-rsa_securid_auth_agent_for_pam)
 1. [Usage - Configuration options and additional functionality](#usage)
 1. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
 1. [Limitations - OS compatibility, etc.](#limitations)
@@ -21,29 +18,30 @@ just a puppetization of the instructions found here:
 
 https://community.rsa.com/docs/DOC-39959
 
-## Setup
+## Usage
 
-### Setup Requirements
-
-Before you can actually use this module, you need to:
-
-1. Download the proprietary agent from the link below and put it in this
-   module's "files" directory:
+1. Download the agent, PAM-Agent_v7.1.0.1.16.05_06_13_02_04_01.tar, from here:
 
    https://community.rsa.com/docs/DOC-61994
 
-1. Create or copy the sdconf.rec file from the RSA server to this module's
-   "files" directory.
+1. Create an sdconf.rec file on your RSA server.
 
-### Beginning with rsa_securid_auth_agent_for_pam
+1. Create a class named "profile::rsa_securid_auth_agent_for_pam" in your
+   Puppet repo with this content:
 
-1. Copy the tar file and sdconf.rec files that you downloaded in Setup Requirements into this module's "files" directory.
+class profile::rsa_securid_auth_agent_for_pam {
+  include ::rsa_securid_auth_agent_for_pam
+  file { '/var/ace/sdconf.rec':
+    mode   => '0600',
+    source => "puppet:///modules/${module_name}/rsa_securid_auth_agent_for_pam/sdconf.rec",
+  }
+  file { '/opt/PAM-Agent_v7.1.0.1.16.05_06_13_02_04_01.tar':
+    source => "puppet:///modules/${module_name}/rsa_securid_auth_agent_for_pam/PAM-Agent_v7.1.0.1.16.05_06_13_02_04_01.tar",
+  }
+}
 
-## Usage
-
-This section is where you describe how to customize, configure, and do the
-fancy stuff with your module here. It's especially helpful if you include usage
-examples and code samples for doing things with your module.
+1. Copy sdconf.rec and PAM-Agent_v7.1.0.1.16.05_06_13_02_04_01.tar to
+   modules/profile/files/rsa_securid_auth_agent_for_pam/
 
 ## Reference
 
