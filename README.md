@@ -24,15 +24,19 @@ https://community.rsa.com/docs/DOC-39959
 
    https://community.rsa.com/docs/DOC-61994
 
-2. Create an sdconf.rec file on your RSA server.
+1. Create an sdconf.rec file on your RSA server.
 
-3. Create a class named "profile::rsa_securid_auth_agent_for_pam" in your
+1. Create a class named "profile::rsa_securid_auth_agent_for_pam" in your
    Puppet repo with content like this:
 
 ```
 class profile::rsa_securid_auth_agent_for_pam {
   include ::rsa_securid_auth_agent_for_pam
   include ::rsa_securid_auth_agent_for_pam::sshd
+  # Optional service declaration for sshd if you don't have one elsewhere.
+  #service { 'sshd':
+  #  ensure => running,
+  #}
   file { '/var/ace/sdconf.rec':
     mode   => '0600',
     source => "puppet:///modules/${module_name}/rsa_securid_auth_agent_for_pam/sdconf.rec",
@@ -43,7 +47,7 @@ class profile::rsa_securid_auth_agent_for_pam {
 }
 ```
 
-4. Copy sdconf.rec and PAM-Agent_v7.1.0.1.16.05_06_13_02_04_01.tar to
+1. Copy sdconf.rec and PAM-Agent_v7.1.0.1.16.05_06_13_02_04_01.tar to
    modules/profile/files/rsa_securid_auth_agent_for_pam/
 
 ## Reference
@@ -52,6 +56,14 @@ Here, include a complete list of your module's classes, types, providers,
 facts, along with the parameters for each. Users refer to this section (thus
 the name "Reference") to find specific details; most users don't read it per
 se.
+
+###rsa_securid_auth_agent_for_pam
+
+No parameters.
+
+###rsa_securid_auth_agent_for_pam::sshd
+
+No parameters. Note that this class requires that you are defining Service['sshd'] in your local Puppet code.
 
 ## Limitations
 

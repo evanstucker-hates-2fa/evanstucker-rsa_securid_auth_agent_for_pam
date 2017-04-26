@@ -19,5 +19,4 @@ class rsa_securid_auth_agent_for_pam::sshd {
     changes => [ 'set ChallengeResponseAuthentication yes' ],
     notify  => Service['sshd'],
   }
-  ensure_resource('service', 'sshd', {'ensure' => 'running' })
 }
