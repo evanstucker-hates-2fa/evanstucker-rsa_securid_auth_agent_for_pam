@@ -2,7 +2,7 @@
 # and herculesteam/augeasproviders_pam Puppet Forge modules, which would have
 # made for some less-heinous augeas-ing, but I'm competent at augeas, so I
 # didn't. 
-class rsa_securid_auth_agent_for_pam::sshd {i
+class rsa_securid_auth_agent_for_pam::sshd {
   augeas { 'UsePAM':
     context => '/files/etc/ssh/sshd_config',
     changes => [ 'set UsePAM yes' ],
