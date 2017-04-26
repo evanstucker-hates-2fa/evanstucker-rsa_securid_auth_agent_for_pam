@@ -1,6 +1,6 @@
 {
   "name": "evanstucker-rsa_securid_auth_agent_for_pam",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "author": "evanstucker",
   "summary": "This module configures the RSA SecurID Authentication Agent for PAM.",
   "license": "Apache-2.0",
