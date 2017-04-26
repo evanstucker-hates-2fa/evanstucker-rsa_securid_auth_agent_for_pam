@@ -1,4 +1,8 @@
-class rsa_securid_auth_agent_for_pam::sshd {
+# I could make this module dependent on the herculesteam/augeasproviders_ssh
+# and herculesteam/augeasproviders_pam Puppet Forge modules, which would have
+# made for some less-heinous augeas-ing, but I'm competent at augeas, so I
+# didn't. 
+class rsa_securid_auth_agent_for_pam::sshd {i
   augeas { 'UsePAM':
     context => '/files/etc/ssh/sshd_config',
     changes => [ 'set UsePAM yes' ],
@@ -18,5 +22,15 @@ class rsa_securid_auth_agent_for_pam::sshd {
     context => '/files/etc/ssh/sshd_config',
     changes => [ 'set ChallengeResponseAuthentication yes' ],
     notify  => Service['sshd'],
+  }
+  augeas { 'auth required pam_securid.so':
+    context => '/files/etc/pam.d/sshd',
+    changes => [
+      'ins 01 after *[type="auth"][control="include"][module="postlogin"]',
+      'set 01/type auth',
+      'set 01/control required',
+      'set 01/module pam_securid.so',
+    ],
+    onlyif  => 'match *[type="auth"][control="required"][module="pam_securid.so"] size == 0',
   }
 }
