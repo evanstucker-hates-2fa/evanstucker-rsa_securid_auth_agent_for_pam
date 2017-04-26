@@ -27,11 +27,12 @@ https://community.rsa.com/docs/DOC-39959
 2. Create an sdconf.rec file on your RSA server.
 
 3. Create a class named "profile::rsa_securid_auth_agent_for_pam" in your
-   Puppet repo with this content:
+   Puppet repo with content like this:
 
 ```
 class profile::rsa_securid_auth_agent_for_pam {
   include ::rsa_securid_auth_agent_for_pam
+  include ::rsa_securid_auth_agent_for_pam::sshd
   file { '/var/ace/sdconf.rec':
     mode   => '0600',
     source => "puppet:///modules/${module_name}/rsa_securid_auth_agent_for_pam/sdconf.rec",
