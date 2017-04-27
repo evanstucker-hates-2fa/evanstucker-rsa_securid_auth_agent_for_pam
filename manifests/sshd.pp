@@ -23,6 +23,11 @@ class rsa_securid_auth_agent_for_pam::sshd {
     changes => [ 'set ChallengeResponseAuthentication yes' ],
     notify  => Service['sshd'],
   }
+  augeas { 'PubkeyAuthentication':
+    context => '/files/etc/ssh/sshd_config',
+    changes => [ 'set PubkeyAuthentication no' ],
+    notify  => Service['sshd'],
+  }
   augeas { 'auth required pam_securid.so':
     context => '/files/etc/pam.d/sshd',
     changes => [

@@ -24,7 +24,7 @@ class rsa_securid_auth_agent_for_pam {
   else {
     $bits = ''
   }
-  exec { '/opt/PAM-Agent_v7.1.0.1.16.05_06_13_02_04_01.expect':
+  exec { '/opt/PAM-Agent_v7.1.0.1.16.05_06_13_02_04_01.expect &> /tmp/PAM-Agent_v7.1.0.1.16.05_06_13_02_04_01.expect.log':
     creates => "/usr/lib${bits}/security/pam_securid.so",
     require => [
       Package['expect'],
