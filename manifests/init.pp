@@ -18,7 +18,7 @@ class rsa_securid_auth_agent_for_pam {
     mode   => '0755',
     source => "puppet:///modules/${module_name}/PAM-Agent_v7.1.0.1.16.05_06_13_02_04_01.expect",
   }
-  if $facts[os][architecture] == 'x86_64' {
+  if $::facts[os][architecture] == 'x86_64' {
     $bits = '64'
   }
   else {
