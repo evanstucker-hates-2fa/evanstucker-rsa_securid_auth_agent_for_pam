@@ -20,6 +20,8 @@ https://community.rsa.com/docs/DOC-39959
 
 ## Usage
 
+1. Open up the appropriate ports in your firewalls and/or security groups. I had to open 5500 UDP and 5550 TCP.
+
 1. Download the agent, PAM-Agent_v7.1.0.1.16.05_06_13_02_04_01.tar, from here:
 
    https://community.rsa.com/docs/DOC-61994
@@ -49,6 +51,8 @@ class profile::rsa_securid_auth_agent_for_pam {
 
 1. Copy sdconf.rec and PAM-Agent_v7.1.0.1.16.05_06_13_02_04_01.tar to
    modules/profile/files/rsa_securid_auth_agent_for_pam/
+
+1. Did you remember to open up your firewall ports?
 
 ## Reference
 
